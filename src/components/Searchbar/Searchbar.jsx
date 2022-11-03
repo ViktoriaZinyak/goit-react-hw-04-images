@@ -3,27 +3,42 @@ import { ImSearch } from 'react-icons/im';
 import css from './Searchbar.module.css';
 
 class Searchbar extends Component {
-  state = {
-    request: '',
-  };
+  // state = {
+  //   request: '',
+  // };
 
-  handleInputChange = e => {
-    this.setState({ request: e.target.value.trim() });
-  };
+  // handleInputChange = e => {
+  //   this.setState({ request: e.target.value.trim() });
+  // };
 
+  // handleSubmit = e => {
+  //   e.preventDefault();
+  //   if (this.state.request.trim() === '') {
+  //     alert('Введите ваш запрос');
+  //     return;
+  //   }
+  //   this.props.onSubmit(this.state.request);
+  //   this.reset();
+  // };
+
+  // reset = () => {
+  //   this.setState({ request: '' });
+  // };
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.request.trim() === '') {
+    const form = e.currentTarget;
+    const searchValue = form.elements.searchValue.value;
+    if (searchValue.trim() === '') {
       alert('Введите ваш запрос');
       return;
     }
-    this.props.onSubmit(this.state.request);
-    this.reset();
+    this.props.onSubmit(searchValue);
+    form.reset();
   };
 
-  reset = () => {
-    this.setState({ request: '' });
-  };
+  // reset = () => {
+  //   this.setState({ request: '' });
+  // };
 
   render() {
     return (
@@ -39,8 +54,9 @@ class Searchbar extends Component {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            onChange={this.handleInputChange}
-            value={this.state.request}
+            name="searchValue"
+            // onChange={this.handleInputChange}
+            // value={this.state.request}
           />
         </form>
       </header>
